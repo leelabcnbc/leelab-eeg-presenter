@@ -41,3 +41,52 @@ To parse the binary files created by this program (it won't necessarily work for
 java -jar encranion-present-assembly-0.1.jar readevents /path/to/XXXX_third_party.bin /path/to/where/you/want/the/parsed/file/saved.txt
 ```
 
+
+## Experiment specification file
+
+To run an experiment you need to create a file which contains one stimuli per line. 
+Currently sounds (.wav) and images (.png, .jpg, .gif, .bmp) are supported.
+
+Markers must be valid signed 4 byte integers (you shouldn't have to worry about that). If you do not want
+to have a marker for a given event then the marker value should be `-1`.
+
+The first line of the experiment file must specify the background color of the presentation screen. 
+It is specified in RGB format. Each value of R, G, and B must be integers 0-255
+
+```
+BACKGROUND R G B
+```
+
+The rest of the lines are started specifying the type of stimuli `BLANK` `SOUND` `IMAGE` or `RESPONSE`. 
+Each type has it's own parameters:
+
+`BLANK` specifies that the screen should be blank. The the first parameter is the marker and the 
+second parameter is the duration in seconds.
+The following specifies a 2.5 second blank with marker 54. 
+
+```
+BLANK 54 2.5
+```
+
+`IMAGE` specifies that an image should be displayed. The image needs to be sized correctly
+beforehand. The image will be centered on the screen. The parameters are the marker, the duration
+and the FULL path to the image. For example the following shows `/path/to/yourimage.jpg`
+for 4.25 seconds with the marker 6
+
+```
+IMAGE 6 4.25 /path/to/yourimage.jpg
+```
+
+```SOUND``` specifies that a sound should be displayed. The file needs to be a .wav file. The
+parameters are the marker and the FULL path to the sound file.
+For example the following plays `/path/to/yoursound.wav` and marks the beginning with 14
+
+```
+SOUND 14 /path/to/yoursound.wav
+```
+
+```RESPONSE``` specifies that the user is supposed to respond with some keypress. The 
+key press is logged. The parameters are the marker, the maximum duration, and optionally
+an image that is presented (e.g. instructions). The below example as a max response
+of 5 seconds and shows image `/image/path/image.jpg` marker with 64
+
