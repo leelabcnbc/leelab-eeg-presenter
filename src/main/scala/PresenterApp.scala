@@ -68,7 +68,7 @@ class PrintLnEventWriter extends EventWriter {
 class WriterEventWriter(val writer : Writer) extends EventWriter {
   def markEvent(i : Int) = {
     val time = System.currentTimeMillis()
-    writer.write(s"$time $i\r")
+    writer.write(s"$time $i\n")
     writer.flush()
   }
 }
@@ -76,7 +76,7 @@ class WriterEventWriter(val writer : Writer) extends EventWriter {
 class WriterResponseWriter(val writer : Writer) extends ResponseWriter {
   override def markRespose(rs: ResponseStimulus, option: Int): Unit = {
     val time = System.currentTimeMillis()
-    writer.write(s"$time $option\r")
+    writer.write(s"$time $option\n")
     writer.flush()
   }
 }
@@ -114,7 +114,7 @@ object PresenterApp {
         val eveOutPath = Paths.get(args(2))
 
         val parsedEvents = EventFileReader.readABMThirdPartyBin(eveBinPath.toString)
-        val eveString : String = parsedEvents.map(t => Array(t._1, t._2).mkString(" ")).mkString("\r")
+        val eveString : String = parsedEvents.map(t => Array(t._1, t._2).mkString(" ")).mkString("\n")
         new PrintWriter(eveOutPath.toString) { write(eveString); close}
         System.exit(0)
       }
