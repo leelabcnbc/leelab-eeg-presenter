@@ -158,7 +158,8 @@ object PresenterApp {
     val expDef = ExperimentDefinition.fromStrings(lines)
 
     val fileWriter = new WriterEventWriter(new BufferedWriter(new FileWriter(timingOutputPath.toFile)))
-    val eventWriter = new MultiEventWriter(Vector(fileWriter))
+    val esuWriter = new ESUEventWriter(portName)
+    val eventWriter = new MultiEventWriter(Vector(fileWriter,esuWriter))
     val responseWriter = new WriterResponseWriter(new BufferedWriter(new FileWriter(responseOutputPath.toFile)))
     val imageIconStore = StimuliStore.buildImageIconStore(expDef.stimuli)
     val audioClipStore = StimuliStore.buildAudioClipStore(expDef.stimuli)
