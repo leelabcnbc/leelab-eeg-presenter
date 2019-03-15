@@ -91,6 +91,6 @@ an image that is presented (e.g. instructions). The below example as a max respo
 of 5 seconds and shows image `/image/path/image.jpg` marker with 64
 
 ```
-RESPONSE 4 exampleimage.png 1 37 exampleimage2.png 39 exampleimage2.png
+RESPONSE 4 promptimage.png 1 37 yesimage2.png 39 noimage2.png
 ```
 
