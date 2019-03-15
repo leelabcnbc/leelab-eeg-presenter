@@ -90,3 +90,7 @@ key press is logged. The parameters are the marker, the maximum duration, and op
 an image that is presented (e.g. instructions). The below example as a max response
 of 5 seconds and shows image `/image/path/image.jpg` marker with 64
 
+```
+RESPONSE 4 exampleimage.png 1 37 exampleimage2.png 39 exampleimage2.png
+```
+
